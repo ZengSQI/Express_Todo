@@ -24,7 +24,7 @@ exports.destroy = function ( req, res ){
 exports.index = function ( req, res ){
   Todo.
 	find().
-	sort('-update_at').
+	sort('-updated_at').
 	exec( function ( err, todos ){
 	  res.render( 'index', {
         title : 'Express Todo Example',
@@ -37,7 +37,7 @@ exports.index = function ( req, res ){
 exports.edit = function ( req, res ){
   Todo.
 	find().
-	sort('-update_at').
+	sort('-updated_at').
 	exec( function ( err, todos ){
     res.render( 'edit', {
         title   : 'Express Todo Example',
