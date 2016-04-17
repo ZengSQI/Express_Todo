@@ -22,12 +22,40 @@ exports.destroy = function ( req, res ){
 
 //Display
 exports.index = function ( req, res ){
-  Todo.find( function ( err, todos, count ){
-    res.render( 'index', {
+  Todo.
+	find().
+	sort('-update_at').
+	exec( function ( err, todos ){
+	  res.render( 'index', {
         title : 'Express Todo Example',
         todos : todos
     });
   });
 };
 
+//Edit
+exports.edit = function ( req, res ){
+  Todo.
+	find().
+	sort('-update_at').
+	exec( function ( err, todos ){
+    res.render( 'edit', {
+        title   : 'Express Todo Example',
+        todos   : todos,
+        current : req.params.id
+    });
+  });
+};
+
+
+//Update
+exports.update = function ( req, res ){
+  Todo.findById( req.params.id, function ( err, todo ){
+    todo.content    = req.body.content;
+    todo.updated_at = Date.now();
+    todo.save( function ( err, todo, count ){
+      res.redirect( '/' );
+    });
+  });
+};
 module.exports = exports;

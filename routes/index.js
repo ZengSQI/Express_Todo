@@ -6,5 +6,7 @@ var todo = require('../controllers/index');
 router.get('/', todo.index);
 router.post('/create', todo.create);
 router.get('/destroy/:id', todo.destroy);
+router.get('/edit/:id', todo.edit);
+router.get('/update/:id', todo.update);
 
 module.exports = router;
