@@ -54,7 +54,7 @@ exports.update = function ( req, res ){
     todo.content    = req.body.content;
     todo.updated_at = Date.now();
     todo.save( function ( err, todo, count ){
-      res.redirect( req,baseUrl );
+      res.redirect( req.baseUrl );
     });
   });
 };
