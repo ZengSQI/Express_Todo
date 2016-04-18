@@ -7,7 +7,7 @@ exports.create = function ( req, res ){
     content    : req.body.content,
     updated_at : Date.now()
   }).save( function( err, todo, count ){
-    res.redirect( '/' );
+    res.redirect( req.baseUrl );
   });
 };
 
@@ -15,7 +15,7 @@ exports.create = function ( req, res ){
 exports.destroy = function ( req, res ){
   Todo.findById( req.params.id, function ( err, todo ){
     todo.remove( function ( err, todo ){
-      res.redirect( '/' );
+      res.redirect( req.baseUrl );
     });
   });
 };
@@ -54,7 +54,7 @@ exports.update = function ( req, res ){
     todo.content    = req.body.content;
     todo.updated_at = Date.now();
     todo.save( function ( err, todo, count ){
-      res.redirect( '/' );
+      res.redirect( req,baseUrl );
     });
   });
 };
