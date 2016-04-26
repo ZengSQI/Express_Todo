@@ -6,6 +6,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 var routes = require('./routes/todo_router');
 
@@ -24,6 +26,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+
+io.on('connection', function(socket){
+  socket.on('chat message', function(msg){
+	io.emit('chat message', msg);
+  });
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

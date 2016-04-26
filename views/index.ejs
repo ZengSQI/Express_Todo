@@ -10,16 +10,17 @@
 	<form action="./create" method="post" accept-charset="utf-8">
   		<input type="text" name="content" />
 	</form>
+	<ul id="todos">
 	<% todos.forEach( function( todo ){ %>
-	<p>
+	<li>
       <span>
 		<a href="./edit/<%= todo._id %>" title="Update this todo item"><%= todo.content %></a>
       </code>
       <span>
       <a href="./destroy/<%= todo._id %>" title="Delete this todo item">Delete</a>
       </code>
-    </p>
+    </li>
 	<% }); %>
-
+	</ul>
   </body>
 </html>
